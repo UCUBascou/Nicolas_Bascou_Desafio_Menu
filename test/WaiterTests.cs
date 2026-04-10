@@ -18,10 +18,10 @@ namespace Ucu.Poo.Restaurant.Tests
         public void TakeOrder_WithValidParameters_TakesOrder()
         {
             Waiter waiter = new Waiter("Jane Doe");
-            Table table = new Table(1);
+            Table table = new Table(1, false);
             waiter.AssignTable(table);
             Dish dish = new Dish("Salad", 5.99, true);
-            table.Ocupy();
+            table.Occupy();
 
             waiter.TakeOrder(table, dish);
 

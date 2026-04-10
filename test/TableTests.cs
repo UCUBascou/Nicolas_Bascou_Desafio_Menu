@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 
 namespace Ucu.Poo.Restaurant.Tests
@@ -9,7 +10,7 @@ namespace Ucu.Poo.Restaurant.Tests
         public void Constructor_WithValidParameters_SetsProperties()
         {
             const int number = 1;
-            Table table = new Table(number);
+            Table table = new Table(number, false);
 
             Assert.That(table.Number, Is.EqualTo(number));
         }
@@ -17,9 +18,9 @@ namespace Ucu.Poo.Restaurant.Tests
         [Test]
         public void IsOccupied_WithOccupiedTable_ReturnsTrue()
         {
-            Table table = new Table(1);
+            Table table = new Table(1, false);
 
-            table.Ocupy();
+            table.Occupy();
 
             Assert.That(table.IsOccupied, Is.True);
         }
@@ -27,7 +28,7 @@ namespace Ucu.Poo.Restaurant.Tests
         [Test]
         public void HasOrders_BeforeAddOrder_ReturnsFalse()
         {
-            Table table = new Table(1);
+            Table table = new Table(1, false);
 
             Assert.That(table.HasOrders(), Is.False);
         }
@@ -35,8 +36,8 @@ namespace Ucu.Poo.Restaurant.Tests
         [Test]
         public void HasOrders_AfterAddOrder_ReturnsTrue()
         {
-            Table table = new Table(1);
-            table.Ocupy();
+            Table table = new Table(1, false);
+            table.Occupy();
             Dish dish = new Dish("Salad", 5.99, true);
 
             table.AddToOrder(dish);
@@ -47,8 +48,8 @@ namespace Ucu.Poo.Restaurant.Tests
         [Test]
         public void Free_WithOccupiedTable_SetsIsOccupiedToFalseAndEmptiesOrder()
         {
-            Table table = new Table(1);
-            table.Ocupy();
+            Table table = new Table(1, false);
+            table.Occupy();
             Dish dish = new Dish("Salad", 5.99, true);
             table.AddToOrder(dish);
 
@@ -57,5 +58,10 @@ namespace Ucu.Poo.Restaurant.Tests
             Assert.That(table.IsOccupied, Is.False);
             Assert.That(table.HasOrders(), Is.False);
         }
+
+        
     }
+    
+
 }
+
